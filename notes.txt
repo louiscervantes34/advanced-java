@@ -1,0 +1,63 @@
+Maven
+	Apache Maven is a powerful build automation and project management tool primarily used for Java projects. It helps developers manage the entire software development lifecycle, from compiling and testing code to packaging and deploying applications, all based on a centralized Project Object Model (POM). 
+	Key uses of Maven
+		Dependency management
+			Maven automatically downloads and manages a project's external libraries and their dependencies from centralized repositories, such as Maven Central. 
+				You simply declare the required libraries and their versions in a pom.xml file, and Maven handles the rest. This eliminates the need to manually download and track JAR files.
+				It also manages "transitive dependencies," where a library your project needs, in turn, needs other libraries. Maven resolves these for you, preventing conflicts. 
+		Build automation
+			Maven provides a standard and uniform way to build projects, reducing manual scripting and ensuring a consistent build process across different development environments. The core process is driven by its build lifecycle, which includes standard phases: 
+				Compile: Compiles the project's source code.
+				Test: Executes unit tests.
+				Package: Bundles the compiled code and resources into a distributable format, such as a .jar or .war file.
+				Install: Places the packaged file into a local repository on your machine, so other local projects can use it as a dependency.
+				Deploy: Publishes the final package to a remote repository for sharing with other developers and projects. 
+			More on Build
+				The Maven build step is not a single action but a series of sequentially executed phases that transform source code into a final artifact, such as a JAR or WAR file. These phases are part of the default lifecycle and are triggered by simple command-line calls. 
+				Key phases of the Maven default lifecycle
+				1. validate
+				Maven begins by ensuring the project's structure is correct and all necessary information, such as dependencies, is available. This phase confirms the project is in a valid state before proceeding. 
+				2. compile
+				This phase compiles the project's main source code, converting the .java files into .class files. The resulting files are placed in the target/classes directory. 
+				3. test
+				After compilation, Maven executes unit tests. If any tests fail, the build is typically halted to prevent a faulty application from being created. These tests run without the code being packaged or deployed. 
+				4. package
+				This is the core "build" step, where the compiled code and resources are bundled into their distributable format, such as a .jar or .war file. For example, a web application project will produce a .war file. 
+				5. verify
+				After the package is created, this phase runs checks to ensure it meets quality standards. This can include running additional checks like integration tests or code-quality analysis tools. 
+				6. install
+				This phase installs the packaged artifact into your local Maven repository. This makes it available as a dependency for any other Maven project on your local machine. 
+				7. deploy
+				In a production or shared environment, this phase copies the final package to a remote repository, allowing other developers and projects to access it. 
+		Project standardization
+			Maven enforces a standard project structure and a predictable set of build behaviors.
+				Convention over Configuration: By following standard file layouts (e.g., src/main/java for source code, src/test/java for tests), developers can quickly understand and navigate any Maven project.
+				Simplified project comprehension: The pom.xml file serves as a central blueprint for the project, making it easy to see all of its configurations, dependencies, and build instructions in one place. 
+	Key components
+		Project Object Model (POM): A declarative XML file (pom.xml) at the root of a project. It contains all the essential information about the project, including its dependencies, build configurations, and metadata.
+		Repositories: Directories that store project artifacts and dependencies. There are three types:
+			Local: A directory on your machine that caches downloaded dependencies.
+			Central: A public repository maintained by the Maven community, containing a vast collection of open-source libraries.
+			Remote: An internal or private repository, often used within a company to share internal libraries.
+		Plugins: The core functionality of Maven is implemented through a plugin-based architecture. For example, the Compiler Plugin handles compilation, and the Surefire Plugin executes tests. 
+	How Maven works in practice
+		When you execute a command like mvn package, Maven performs the following automated steps based on the pom.xml file: 
+			Reads the pom.xml: Analyzes the project's configuration and dependencies.
+			Downloads dependencies: Fetches any required libraries from the central or remote repositories into your local repository.
+			Executes build phases: Runs through the build lifecycle, performing tasks like compiling your code and running tests.
+			Packages the output: Creates a final distributable file, such as a JAR, in the target directory. 
+
+	Everything maven downloads is put in maven's .m2 folder, the .m2 folder is normally located in the home directory, using command line enter ls ~/.m2 to see home directory.  In mine its ls C:\Users\Mr.X\.m2\
+	The command [ mvn exec:java -Dexec.mainClass=application.App ] is used to run a Java application from the command line using Maven. Here is a breakdown of its parts: 
+		mvn This is the command-line interface (CLI) for Apache Maven. When you run mvn, you are invoking the Maven build tool. 
+		exec:java This specifies the Maven goal to execute. 
+			exec: Refers to the Exec Maven Plugin, which is used to execute Java programs or system processes.
+			java: Refers to the specific goal within the plugin. The java goal runs a Java class within the same Java Virtual Machine (JVM) that is running Maven. It automatically sets up the project's dependencies on the classpath, so you don't need to do it manually. 
+		-Dexec.mainClass=application.App This is a command-line parameter that sets a system property for the Maven plugin. 
+			-D: The standard command-line option for defining a system property in Maven.
+			exec.mainClass: The name of the property. The exec:java goal reads this property to know which class to run.
+			application.App: The value of the property. It specifies the fully qualified name of the class that contains the main method to be executed. In Java, the convention is package.ClassName. 
+	How it works together
+		In essence, the entire command tells Maven: "Use the exec plugin to run a Java class (exec:java). For this execution, the main class you should use is application.App." Maven will then compile your project (if necessary), resolve all dependencies, and execute the specified main method.
+	In Windows command line or PowerShell put the commands following -D in quotes, like this: mvn exec:java -D"exec.mainClass=application.App"
+	
