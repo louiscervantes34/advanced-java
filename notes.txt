@@ -68,4 +68,48 @@ Maven
 	How it works together
 		In essence, the entire command tells Maven: "Use the exec plugin to run a Java class (exec:java). For this execution, the main class you should use is application.App." Maven will then compile your project (if necessary), resolve all dependencies, and execute the specified main method.
 	In Windows command line or PowerShell put the commands following -D in quotes, like this: mvn exec:java -D"exec.mainClass=application.App"
+
+Gradle
+	gradle init
+		Select type of project to generate: application
+		Select implementation language: Java
+		Enter target Java version: 17
+		Project name: gradle1-hello-world
+		Select application structure: Application and library project
+		Select build script DSL: Groovy
+		Generate build using new APIs and behavior: no
+			steps above create the following folders and files:
+			app
+			buildSrc
+			gradle
+	                list
+	                utilities
+			.gitattributes
+			.gitignore
+			gradle.properties
+			gradlew
+			gradlew.bat
+			settings.gradle
+		Select type of project to generate: Application
+		Select implementation language: Java
+		Enter target Java version: 17
+		Project name: gradle1-hello-world
+		Select application structure: Single application project
+		Select build script DSL: Groovy
+		Select test framework: JUnit 4
+		Generate build using new APIs and behavior: no		
+			steps above create the following folders and files:
+			app
+			gradle
+			.gitattributes
+			.gitignore
+			gradle.properties
+			gradlew
+			gradlew.bat
+			settings.gradle
+
+
+
+		
+	
 	
