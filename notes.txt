@@ -1,3 +1,11 @@
+Git
+	common commands
+	git status
+	git add *
+	git commit -m "comment about the commit"
+	git commit -am "comment about the commit"	this one does the add and commit in one go
+	git push origin main				this one pushes the changes to cloud repo
+
 Maven
 	Apache Maven is a powerful build automation and project management tool primarily used for Java projects. It helps developers manage the entire software development lifecycle, from compiling and testing code to packaging and deploying applications, all based on a centralized Project Object Model (POM). 
 	Key uses of Maven
